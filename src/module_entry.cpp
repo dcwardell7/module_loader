@@ -4,12 +4,16 @@ namespace sil {
 
 ModuleEntry::
 ModuleEntry()
+  : libName(),
+	libHandle(0),
+	funcHandles()
 {}
 
 ModuleEntry::
-ModuleEntry(const std::string& libName, void* handle)
-  : libName(libName),
-	libHandle(handle)
+ModuleEntry(const std::string& name, void* handle)
+  : libName(name),
+	libHandle(handle),
+	funcHandles()
 {}
 
 ModuleEntry::

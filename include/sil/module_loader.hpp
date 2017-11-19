@@ -44,8 +44,8 @@ getClass(const std::string& libName, const std::string& createName, const std::s
 	auto destroyFunc = getFunc<void(T*)>(libName, destroyName);
 	auto instance = createFunc();
 
-	return std::shared_ptr<T>(instance, [destroyFunc](T* instance){
-		destroyFunc(instance);
+	return std::shared_ptr<T>(instance, [destroyFunc](T* inst){
+		destroyFunc(inst);
 	});
 }
 

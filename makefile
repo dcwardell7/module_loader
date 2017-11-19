@@ -1,3 +1,5 @@
+ERROR_FLAGS=-Wall -Wextra -Wshadow -Weffc++ -Wstrict-aliasing -ansi -pedantic -Werror -ggdb
+
 lib: libmodule_loader.a
 
 test: lib libgreeter.so libclass_greeter.so main.o
@@ -13,19 +15,19 @@ libmodule_loader.a: module_entry.o so_loader.o module_loader.o
 	rm lib/*.o
 
 module_entry.o:
-	g++ -std=c++14 -O -c src/module_entry.cpp -o lib/module_entry.o
+	g++ ${ERROR_FLAGS} -std=c++14 -O -c src/module_entry.cpp -o lib/module_entry.o
 
 so_loader.o: module_entry.o
-	g++ -std=c++14 -O -c src/so_loader.cpp -o lib/so_loader.o
+	g++ ${ERROR_FLAGS} -std=c++14 -O -c src/so_loader.cpp -o lib/so_loader.o
 
 module_loader.o: so_loader.o
-	g++ -std=c++14 -O -Iinclude -c src/module_loader.cpp -o lib/module_loader.o
+	g++ ${ERROR_FLAGS} -std=c++14 -O -Iinclude -c src/module_loader.cpp -o lib/module_loader.o
 
 libgreeter.so:
-	gcc -fPIC -Wall -Werror -Wextra -pedantic test/src/greeter.c -shared -o test/lib/libgreeter.so
+	gcc ${ERROR_FLAGS} -fPIC -shared test/src/greeter.c -o test/lib/libgreeter.so
 
 libclass_greeter.so:
-	g++ -std=c++14 -fPIC -Wall -Werror -Wextra -pedantic -Itest/include test/src/class_greeter.cpp -shared -o test/lib/libclass_greeter.so
+	g++ ${ERROR_FLAGS} -std=c++14 -fPIC -shared -Itest/include test/src/class_greeter.cpp -o test/lib/libclass_greeter.so
 
 main.o:
-	g++ -std=c++14 -O -Iinclude -Itest/include -c test/src/main.cpp -o test/lib/main.o
+	g++ ${ERROR_FLAGS} -std=c++14 -O -Iinclude -Itest/include -c test/src/main.cpp -o test/lib/main.o

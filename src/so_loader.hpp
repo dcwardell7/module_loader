@@ -12,7 +12,7 @@ namespace sil {
 class SoLoader
 {
 public:
-	SoLoader(int);
+	SoLoader(int flags);
 	virtual ~SoLoader();
 	void* getFunc(const std::string& libName, const std::string& funcName);
 

@@ -6,12 +6,16 @@
 
 namespace sil {
 
-struct ModuleEntry
+class ModuleEntry
 {
 public:
 	ModuleEntry();
 	ModuleEntry(const std::string& libName, void* handle);
+	ModuleEntry(const ModuleEntry& moduleEntry) = default;
 	virtual ~ModuleEntry();
+
+	ModuleEntry& operator=(const ModuleEntry& moduleEntry) = default;
+
 	std::string getName() const;
 	void* getHandle() const;
 	void setFunc(const std::string& funcName, void* handle);

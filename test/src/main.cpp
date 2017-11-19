@@ -2,7 +2,7 @@
 #include "greeter.hpp"
 #include <iostream>
 
-int main(int argc, char** argv)
+int main()
 {
 	auto funcLib = "libgreeter.so";
 	auto classLib = "libclass_greeter.so";

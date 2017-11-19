@@ -6,12 +6,13 @@
 namespace sil {
 
 SoLoader::
-SoLoader(int flags)
-	: flags(flags)
+SoLoader(int f)
+  : flags(f),
+	modulesByName()
 {
 	if(!(flags & RTLD_NOW) && !(flags & RTLD_LAZY))
 	{
-		this->flags |= RTLD_NOW;
+		flags |= RTLD_NOW;
 	}
 	dlerror();
 }
@@ -36,6 +37,8 @@ getFunc(const std::string& libName, const std::string& funcName) -> void*
 		auto libHandle = open(libName);
 		entry = ModuleEntry(libName, libHandle);
 		modulesByName[libName] = entry;
+	} else {
+		entry = kv->second;
 	}
 
 	// Lazy load new functions

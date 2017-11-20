@@ -9,9 +9,9 @@ namespace sil { namespace test {
 class ClassGreeter : public Greeter
 {
 public:
-	ClassGreeter();
-	virtual ~ClassGreeter();
-	std::string greet() const;
+  ClassGreeter();
+  virtual ~ClassGreeter();
+  std::string greet() const;
 private:
 };
 

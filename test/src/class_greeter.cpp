@@ -13,7 +13,7 @@ ClassGreeter::
 auto ClassGreeter::
 greet() const -> std::string
 {
-	return "Hello, Class!";
+  return "Hello, Class!";
 }
 
 } }
@@ -22,12 +22,12 @@ extern "C" {
 
 sil::test::Greeter* create()
 {
-	return new sil::test::ClassGreeter();
+  return new sil::test::ClassGreeter();
 }
 
 void destroy(sil::test::Greeter* instance)
 {
-	delete instance;
+  delete instance;
 }
 
 }

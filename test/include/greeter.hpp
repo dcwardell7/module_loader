@@ -8,8 +8,8 @@ namespace sil { namespace test {
 class Greeter
 {
 public:
-	virtual ~Greeter(){};
-	virtual std::string greet() const = 0;
+  virtual ~Greeter(){};
+  virtual std::string greet() const = 0;
 };
 
 } }

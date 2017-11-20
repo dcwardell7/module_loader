@@ -7,19 +7,19 @@ namespace sil {
 class ModuleLoader::Impl
 {
 public:
-	Impl(int flags)
-	  : soLoader(std::make_unique<SoLoader>(flags))
-	{}
+  Impl(int flags)
+    : soLoader(std::make_unique<SoLoader>(flags))
+  {}
 
-	virtual ~Impl()
-	{}
+  virtual ~Impl()
+  {}
 
-	void* getFuncPtr(const std::string& libName, const std::string& funcName)
-	{
-		return soLoader->getFunc(libName, funcName);
-	}
+  void* getFuncPtr(const std::string& libName, const std::string& funcName)
+  {
+    return soLoader->getFunc(libName, funcName);
+  }
 private:
-	std::unique_ptr<SoLoader> soLoader;
+  std::unique_ptr<SoLoader> soLoader;
 };
 
 ModuleLoader::
@@ -34,7 +34,7 @@ ModuleLoader::
 auto ModuleLoader::
 getFuncPtr(const std::string& libName, const std::string& funcName) -> void*
 {
-	return impl->getFuncPtr(libName, funcName);
+  return impl->getFuncPtr(libName, funcName);
 }
 
 }

@@ -12,22 +12,22 @@ namespace sil {
 class SoLoader
 {
 public:
-	SoLoader(int flags);
-	virtual ~SoLoader();
-	void* getFunc(const std::string& libName, const std::string& funcName);
+  SoLoader(int flags);
+  virtual ~SoLoader();
+  void* getFunc(const std::string& libName, const std::string& funcName);
 
 private:
-	typedef std::map<std::string, ModuleEntry> ModuleMap;
+  typedef std::map<std::string, ModuleEntry> ModuleMap;
 
 private:
-	int flags;
-	ModuleMap modulesByName;
+  int flags;
+  ModuleMap modulesByName;
 
 private:
-	void* open(const std::string& libName);
-	void* getFunc(void* handle, const std::string& funcName);
-	void close(void* handle);
-	void assertDlError();
+  void* open(const std::string& libName);
+  void* getFunc(void* handle, const std::string& funcName);
+  void close(void* handle);
+  void assertDlError();
 };
 
 }

@@ -11,17 +11,14 @@ test: lib libgreeter.so libclass_greeter.so main.o
 clean:
 	rm -f lib/* test/lib/* test/bin/*
 
-libmodule_loader.a: module_entry.o so_loader.o module_loader.o
-	ar rcs lib/libmodule_loader.a lib/module_entry.o lib/so_loader.o lib/module_loader.o
+libmodule_loader.a: module_entry.o module_loader.o
+	ar rcs lib/libmodule_loader.a lib/module_entry.o lib/module_loader.o
 	rm lib/*.o
 
 module_entry.o:
 	g++ ${CPP_ERROR_FLAGS} -std=c++14 -O -c src/module_entry.cpp -o lib/module_entry.o
 
-so_loader.o: module_entry.o
-	g++ ${CPP_ERROR_FLAGS} -std=c++14 -O -c src/so_loader.cpp -o lib/so_loader.o
-
-module_loader.o: so_loader.o
+module_loader.o: module_entry.o
 	g++ ${CPP_ERROR_FLAGS} -std=c++14 -O -Iinclude -c src/module_loader.cpp -o lib/module_loader.o
 
 libgreeter.so:
